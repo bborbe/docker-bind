@@ -9,10 +9,6 @@ RUN set -x \
     && apt-get install --quiet --yes --no-install-recommends bind9 \
     && apt-get clean
 
-RUN cd /etc; rm -rf bind; ln -s ../var/lib/bind bind
-RUN mkdir -p /var/log/named
-RUN chown bind:bind /var/log/named
-VOLUME ["/var/lib/bind"]
 EXPOSE 53/udp 53/tcp
-USER bind
-CMD ["/usr/sbin/named","-f"]
+
+CMD ["/usr/sbin/named","-u","bind","-g","-f"]
