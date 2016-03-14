@@ -9,6 +9,10 @@ RUN set -x \
     && apt-get install --quiet --yes --no-install-recommends bind9 \
     && apt-get clean
 
+RUN set -x \
+	&& mkdir -p /var/run/named \
+	&& chown -R bind:bind /var/run/named
+
 EXPOSE 53/udp 53/tcp
 
 CMD ["/usr/sbin/named","-u","bind","-g","-f"]
