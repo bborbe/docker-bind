@@ -1,5 +1,8 @@
 default: build
 
+clean:
+	docker rmi bborbe/bind
+
 build:
 	docker build --rm=true -t bborbe/bind .
 
