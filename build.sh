@@ -2,6 +2,6 @@
 
 set -e
 
-docker build --rm=true -t bborbe/bind .
-docker push bborbe/bind
-docker rmi bborbe/bind
+make build
+make upload
+make clean
