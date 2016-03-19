@@ -4,4 +4,3 @@ set -e
 
 make build
 make upload
-make clean
