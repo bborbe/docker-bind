@@ -4,7 +4,7 @@ clean:
 	docker rmi bborbe/bind
 
 build:
-	docker build --rm=true -t bborbe/bind .
+	docker build --no-cache --rm=true -t bborbe/bind .
 
 run:
 	docker run -h example.com -p 53:53/tcp -p 53:53/udp bborbe/bind:latest
