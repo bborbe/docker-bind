@@ -1,10 +1,12 @@
+VERSION ?= 1.0.0
+
 default: build
 
 clean:
-	docker rmi bborbe/bind
+	docker rmi bborbe/bind:$(VERSION)
 
 build:
-	docker build --no-cache --rm=true -t bborbe/bind .
+	docker build --build-arg VERSION=$(VERSION) --no-cache --rm=true -t bborbe/bind:$(VERSION) .
 
 run:
 	docker run \
@@ -12,10 +14,10 @@ run:
 	-p 53:53/udp \
 	-v example:/etc/bind \
 	-v example:/var/lib/bind \
-	bborbe/bind:latest
+	bborbe/bind:$(VERSION)
 
 shell:
-	docker run -i -t bborbe/bind:latest /bin/bash
+	docker run -i -t bborbe/bind:$(VERSION) /bin/bash
 
 upload:
-	docker push bborbe/bind
+	docker push bborbe/bind:$(VERSION)
