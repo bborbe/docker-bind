@@ -1,12 +1,13 @@
-VERSION ?= 1.0.0
+VERSION ?= latest
+REGISTRY ?= docker.io
 
 default: build
 
 clean:
-	docker rmi bborbe/bind:$(VERSION)
+	docker rmi $(REGISTRY)/bborbe/bind:$(VERSION)
 
 build:
-	docker build --build-arg VERSION=$(VERSION) --no-cache --rm=true -t bborbe/bind:$(VERSION) .
+	docker build --build-arg VERSION=$(VERSION) --no-cache --rm=true -t $(REGISTRY)/bborbe/bind:$(VERSION) .
 
 run:
 	docker run \
@@ -17,7 +18,7 @@ run:
 	bborbe/bind:$(VERSION)
 
 shell:
-	docker run -i -t bborbe/bind:$(VERSION) /bin/bash
+	docker run -i -t $(REGISTRY)/bborbe/bind:$(VERSION) /bin/bash
 
 upload:
-	docker push bborbe/bind:$(VERSION)
+	docker push $(REGISTRY)/bborbe/bind:$(VERSION)
