@@ -4,14 +4,18 @@ ARG VERSION
 
 ENV HOME /root
 ENV LANG en_US.UTF-8
-RUN locale-gen en_US.UTF-8
 
 RUN set -x \
 	&& DEBIAN_FRONTEND=noninteractive apt-get update --quiet \
 	&& DEBIAN_FRONTEND=noninteractive apt-get upgrade --quiet --yes \
-	&& DEBIAN_FRONTEND=noninteractive apt-get install --quiet --yes --no-install-recommends apt-transport-https ca-certificates bind9 \
+	&& DEBIAN_FRONTEND=noninteractive apt-get install --quiet --yes --no-install-recommends \
+	locales \
+	apt-transport-https \
+	ca-certificates \
+	bind9 \
 	&& DEBIAN_FRONTEND=noninteractive apt-get autoremove --yes \
 	&& DEBIAN_FRONTEND=noninteractive apt-get clean
+RUN locale-gen en_US.UTF-8
 
 RUN set -x \
 	&& mkdir -p /var/run/named \
