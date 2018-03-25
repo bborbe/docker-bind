@@ -1,5 +1,8 @@
-VERSION ?= latest
 REGISTRY ?= docker.io
+IMAGE ?= bborbe/bind
+ifeq ($(VERSION),)
+	VERSION := $(shell git fetch --tags; git describe --tags `git rev-list --tags --max-count=1`)
+endif
 
 default: build
 
@@ -16,9 +19,6 @@ run:
 	-v example:/etc/bind \
 	-v example:/var/lib/bind \
 	$(REGISTRY)/bborbe/bind:$(VERSION)
-
-shell:
-	docker run -i -t $(REGISTRY)/bborbe/bind:$(VERSION) /bin/bash
 
 upload:
 	docker push $(REGISTRY)/bborbe/bind:$(VERSION)
