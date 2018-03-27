@@ -7,10 +7,10 @@ endif
 default: build
 
 clean:
-	docker rmi $(REGISTRY)/bborbe/bind:$(VERSION)
+	docker rmi $(REGISTRY)/$(IMAGE):$(VERSION)
 
 build:
-	docker build --build-arg VERSION=$(VERSION) --no-cache --rm=true -t $(REGISTRY)/bborbe/bind:$(VERSION) .
+	docker build --build-arg VERSION=$(VERSION) --no-cache --rm=true -t $(REGISTRY)/$(IMAGE):$(VERSION) .
 
 run:
 	docker run \
@@ -18,7 +18,7 @@ run:
 	-p 53:53/udp \
 	-v example:/etc/bind \
 	-v example:/var/lib/bind \
-	$(REGISTRY)/bborbe/bind:$(VERSION)
+	$(REGISTRY)/$(IMAGE):$(VERSION)
 
 upload:
-	docker push $(REGISTRY)/bborbe/bind:$(VERSION)
+	docker push $(REGISTRY)/$(IMAGE):$(VERSION)
