@@ -16,8 +16,8 @@ run:
 	docker run \
 	-p 53:53/tcp \
 	-p 53:53/udp \
-	-v example:/etc/bind \
-	-v example:/var/lib/bind \
+	--mount type=bind,source=`pwd`/example,target=/etc/bind \
+	--mount type=bind,source=`pwd`/example,target=/var/lib/bind \
 	$(REGISTRY)/$(IMAGE):$(VERSION)
 
 upload:
