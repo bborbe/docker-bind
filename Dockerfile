@@ -9,14 +9,10 @@ LABEL org.opencontainers.image.url="https://github.com/bborbe/docker-bind"
 LABEL org.opencontainers.image.documentation="https://github.com/bborbe/docker-bind/blob/master/README.md"
 LABEL org.opencontainers.image.authors="Benjamin Borbe"
 
-ARG DOCKER_REGISTRY
-ARG BRANCH
 ARG BUILD_GIT_VERSION
 ARG BUILD_GIT_COMMIT
 ARG BUILD_DATE
 
-ENV DOCKER_REGISTRY=${DOCKER_REGISTRY}
-ENV BRANCH=${BRANCH}
 ENV BUILD_GIT_VERSION=${BUILD_GIT_VERSION}
 ENV BUILD_GIT_COMMIT=${BUILD_GIT_COMMIT}
 ENV BUILD_DATE=${BUILD_DATE}
